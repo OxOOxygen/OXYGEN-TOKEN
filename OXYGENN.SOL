@@ -20,7 +20,7 @@ contract MyToken {
     // public variables here
     string public tokenName = "Trump";
     string public tokenAbbrv = "trmp";
-    uint public totalSupply = 10000;
+    uint public totalSupply = 5000;
 
     // mapping variable here
     mapping(address => uint112) public balances;
@@ -33,8 +33,9 @@ contract MyToken {
 
     // burn function
     function burn(address _addy, uint112 _supplyvalue) public {
-        require(balances[_addy] >= _supplyvalue, "Unable to burn because balance is insufficient");
+        if(balances[_addy] >= _supplyvalue){
         totalSupply -= _supplyvalue;
         balances[_addy] -= _supplyvalue;
+    }
     }
 }
